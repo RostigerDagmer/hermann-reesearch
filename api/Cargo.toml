@@ -1,0 +1,39 @@
+[package]
+name = "hermann-reesearch"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "hermann-research"
+path = "src/main.rs"
+
+# name = "qdrant-test"
+# path = "src/qdrant-test.rs"
+
+[dependencies]
+anyhow = "1.0.51"
+tonic = "0.8.3"
+qdrant-client = "1.0.0"
+tokenizers = "0.13.2"
+bytemuck = "1.12.3"
+futures = "0.3.27"
+chrono = { version = "0.4.23", features = ["serde"] }
+serde = { version = "1.0.152", features = ["derive"] }
+serde_derive = "1.0.152"
+serde_json = "1.0.94"
+ndarray = { version = "0.15.6", features=["rayon", "serde"] }
+# ndarray-rand = "0.14.0"
+dotenvy = "0.15"
+tokio = { version = "1.24.1", features = ["full"] }
+uuid = {version = "1.2.2", features = ["v4", "fast-rng", "serde"]}
+safe-transmute = "0.11.2"
+reqwest = { version = "0.11.14", features=["json"] }
+triton-client = { git = "https://github.com/octoml/triton-client-rs.git" }
+prost = "0.11.8"
+itertools = "0.10.5"
+lazy_static = "1.4.0"
+
+[build-dependencies]
+tonic-build = "0.8.4"

@@ -1,0 +1,63 @@
+syntax="proto3";
+package surface;
+
+service PaperSearch {
+  rpc GetPaper (GetPaperRequest) returns (GetPaperResponse) {}
+  rpc InsertPaper (InsertPaperRequest) returns (InsertPaperResponse) {}
+  rpc SearchPaper (SearchPaperRequest) returns (SearchPaperResponse) {}
+}
+
+message GetPaperRequest {
+  string corpusid = 1;
+}
+
+message GetPaperResponse {
+    Paper paper = 1;
+}
+
+message InsertPaperRequest {
+    Paper paper = 1;
+}
+
+message InsertPaperResponse {
+    string corpusid = 1;
+}
+
+message SearchPaperRequest {
+    string query = 1;
+    uint64 limit = 2; // limit how many papers get queried from fatcat -> then embedded -> then reranked
+    uint64 topK = 3; // how many papers to return
+}
+
+message SearchPaperResponse {
+    repeated Paper papers = 1;
+}
+
+message Externalids {
+    string mag = 1;
+    string acl = 2;
+    string doi = 3;
+    string pmid = 4;
+    string arxiv = 5;
+}
+
+message OpenAccessInfo {
+    Externalids externalids = 1;
+    string license = 2;
+    string url = 3;
+    string status = 4;
+}
+
+message Paper {
+    string corpusid = 1;
+    OpenAccessInfo openaccessinfo = 2;
+    string abstract = 3;
+    string title = 4;
+    string fulltext = 5;
+    string updated = 6;
+}
+
+message PaperVec {
+    uint64 corpusid = 1;
+    bytes vector = 2;
+}

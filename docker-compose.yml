@@ -1,0 +1,28 @@
+version: '3.4'
+services:
+  qdrant:
+    image: qdrant/qdrant:v0.10.1
+    volumes:
+      - ./db:/qdrant/storage
+      - ./config.yaml:/qdrant/config/production.yaml
+    ports:
+      - 6333:6333
+      - 6334:6334
+      - 6335:6335
+
+  api:
+    image: rust:1-buster
+    command: bash
+    volumes:
+      - ./api:/workspace
+    working_dir: /workspace
+    ports:
+      - '8005:8000'
+    tty: true
+    stdin_open: true
+
+volumes:
+  qdrant:
+    driver: local
+  api:
+    driver: local

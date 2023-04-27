@@ -1,0 +1,7 @@
+*/db
+db
+*.json
+*.ipynb
+*.pyc
+.DS_Store
+*.txt
